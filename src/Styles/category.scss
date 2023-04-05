@@ -1,0 +1,98 @@
+.topMenu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin: 0 auto;
+    position: fixed;
+    top: 20px;
+    right: 7vw;
+
+    label {
+        cursor: pointer;
+
+    }
+
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #fff;
+    color: #333;
+    padding: 0px 16px;
+    font-size: 16px;
+    font-family: 'Dosis', sans-serif;
+    background: radial-gradient(#c3cfe2 20%, #f5f7fa 70%);
+
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content li {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.topMenu li:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+/* Show the dropdown menu on hover */
+.parent-dropdown-content .dropdown-content {
+    max-height: 400px;
+    transition: max-height 0.3s ease-in;
+}
+
+.categoryLabel {
+    font-weight: bold;
+}
+
+
+.link {
+    text-decoration: none;
+    color: inherit;
+
+    &:visited {
+        color: rgba(170, 164, 164, 0.622);
+    }
+}
+
+
+
+@media screen and (max-width:800px) {
+    .topMenu {
+        top: 10px;
+        right: 6vw;
+
+        label {
+            font-size: 14px;
+        }
+    }
+
+    .dropbtn {
+        font-size: 13px;
+    }
+
+    .dropdown-content {
+        width: 110px;
+
+        li {
+            padding: 10px 13px;
+        }
+    }
+}

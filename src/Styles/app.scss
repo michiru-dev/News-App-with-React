@@ -1,0 +1,122 @@
+body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+h1 {
+    font-size: 16px;
+    margin: 30px 30px;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    border-radius: 3rem;
+    border-style: none;
+    cursor: pointer;
+}
+
+img {
+    object-fit: cover;
+    max-height: 90px;
+    width: 180px;
+    border-radius: 5%;
+}
+
+footer {
+    font-size: 14px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.newsTitle {
+    width: 100%;
+    font-size: 30px;
+    margin: 20px 20vw;
+}
+
+.imgBox {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.newsContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.753);
+    border-radius: 1rem;
+    margin: 30px 23vw 30px 18vw;
+}
+
+.headerwithCategory {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: white;
+}
+
+.listDiv {
+    margin-top: 100px;
+}
+
+@media screen and (max-width:800px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 13px;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    .imgBox {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    img {
+        object-fit: cover;
+        max-height: 80px;
+        width: 120px;
+        border-radius: 5%;
+    }
+
+    .newsTitle {
+        margin: 10px 5%;
+        font-size: 24px;
+    }
+
+    .listDiv {
+        margin-top: 55px;
+    }
+
+    .newsContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+        border-top: 1px solid rgba(128, 128, 128, 0.753);
+        border-radius: 0;
+        margin: 0 2vw 0 2vw;
+    }
+
+    button {
+        font-size: 3px;
+    }
+
+}
