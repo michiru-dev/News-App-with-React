@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { getNewsContent, getNewsFeeds } from "./service/fetchNewsFeeds";
-import { NewsFetchResult } from "./utils/types";
+import { getNewsFeeds } from "./service/fetchNewsFeeds";
 
 dotenv.config();
 
@@ -27,54 +26,19 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", corsOptions.origin);
-//     res.header(
-//       "Access-Control-Allow-Headers",
-//       "Origin, X-Requested-With, Content-Type, Accept"
-//     );
-//     next();
-//   });
-
-//./news-feeds任意の名前
+//./news-feeds任意の名前（フロントのつながりを持たせる）
+//第一引数はよぶ側で与えるクエリパラメーターの値
+//第二引数のresは自動で入ってくる値
 app.get("/news-feeds", async (req, res) => {
-  //   console.log({ req, res });
-  console.log({ q: req.query });
-  //query paratermeterを受け取る設定
-  const q = req.query.q as string;
-  const from = req.query.from as string;
-  const sortBy = req.query.sortBy as string;
-  const language = req.query.language as string;
-
-  const newsFeeds: NewsFetchResult = await getNewsFeeds({
-    q,
-    from,
-    sortBy,
-    language,
-  });
-
+  //   query paratermeterを受け取る設定
+  const category = req.query.category as string;
+  const newsFeeds = await getNewsFeeds(category);
   if (newsFeeds.status !== "ok") {
     res.status(500).send("Internal server error");
     throw new Error("Internal server error");
   }
-  //   console.log(newsFeeds);
+  //このres.sendで送った内容が呼び出し元（フロント）にレスポンス（成果物）として渡る
   res.send(newsFeeds);
-});
-
-app.get("/news-feeds/content", async (req, res) => {
-  const urlForContent = req.query.contentUrl as string;
-
-  if (urlForContent) {
-    const news = await getNewsContent(urlForContent);
-    const response = {
-      status: "ok",
-      newsContent: news,
-    };
-    res.send(response);
-    return;
-  }
-
-  res.status(404).send();
 });
 
 app.listen(port, () => {
