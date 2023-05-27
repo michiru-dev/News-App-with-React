@@ -14,13 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNewsContent = exports.getNewsFeeds = void 0;
 const axios_1 = __importDefault(require("axios"));
-const jsdom_1 = require("jsdom"); // parsing article HTML
-const readability_1 = require("@mozilla/readability"); // parsing article HTML
-const NewsAPI = require('newsapi');
-const getNewsFeeds = (queryObj) => __awaiter(void 0, void 0, void 0, function* () {
+//requireでモジュールをjsで使えるようにする
+//ここら辺は公式ドキュメント読む
+const NewsAPI = require("newsapi");
+const getNewsFeeds = (category) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newsapi = new NewsAPI(process.env.NEWS_APIKEY);
-        return newsapi.v2.everything(Object.assign(Object.assign({}, queryObj), { sources: 'bbc-news,the-verge', domains: 'bbc.co.uk, techcrunch.com' }));
+        console.log(newsapi.v2.topHeadlines({
+            category: category,
+            language: "jp",
+            country: "jp",
+        }));
+        return newsapi.v2.topHeadlines({
+            category: "business",
+        });
     }
     catch (error) {
         throw new Error("Error with fetch news feed");
@@ -29,11 +36,10 @@ const getNewsFeeds = (queryObj) => __awaiter(void 0, void 0, void 0, function* (
 exports.getNewsFeeds = getNewsFeeds;
 const getNewsContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        return axios_1.default.get(url)
-            .then(r => {
-            const dom = new jsdom_1.JSDOM(r.data, { url });
-            const article = new readability_1.Readability(dom.window.document).parse();
-            return article;
+        return axios_1.default.get(url).then((r) => {
+            //   const dom = new JSDOM(r.data, { url });
+            //   const article = new Readability(dom.window.document).parse();
+            return r;
         });
     }
     catch (error) {
@@ -41,3 +47,29 @@ const getNewsContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getNewsContent = getNewsContent;
+// const getNewsFeeds = async (
+//     queryObj: NewsSearchQueryObj
+//   ): Promise<NewsFetchResult> => {
+//     try {
+//       const newsapi = new NewsAPI(process.env.NEWS_APIKEY);
+//       return newsapi.v2.everything({
+//         ...queryObj,
+//         sources: "bbc-news,the-verge",
+//         domains: "bbc.co.uk, techcrunch.com",
+//       });
+//     } catch (error) {
+//       throw new Error("Error with fetch news feed");
+//     }
+//   };
+//   const getNewsContent = async (url) => {
+//     try {
+//       return axios.get(url).then((r) => {
+//         const dom = new JSDOM(r.data, { url });
+//         const article = new Readability(dom.window.document).parse();
+//         return article;
+//       });
+//     } catch (error) {
+//       throw new Error("Error with fetch news content");
+//     }
+//   };
+//   export { getNewsFeeds, getNewsContent };
