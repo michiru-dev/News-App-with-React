@@ -35,7 +35,11 @@ function App() {
   useEffect(() => {
     const fetchNews = async () => {
       const res = await fetch(
+        //これは普通のURLと一緒/news-feedsの部分はserverで設定したもの
+        //envの中の↓これはserverのポート番号と一緒じゃないと動かない
         `${process.env.REACT_APP_NODEJS_SERVER}/news-feeds?category=${category}`
+        // fetchをする時は≒GETなのでmethodを省ける
+        //その他の場合は、URLの後の第二引数にこんな感じでmethodを記載 {method: "POST"}
       )
         .then((res) => res.json())
         .catch((_) => {
