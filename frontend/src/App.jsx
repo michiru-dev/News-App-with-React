@@ -42,7 +42,8 @@ function App() {
         //その他の場合は、URLの後の第二引数にこんな感じでmethodを記載 {method: "POST"}
       )
         .then((res) => res.json())
-        .catch((_) => {
+        .catch((err) => {
+          console.log(err);
           throw new Error("Error with news feed fetching");
         });
       if (res.status !== "ok") {
