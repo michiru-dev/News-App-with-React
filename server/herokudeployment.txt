@@ -1,0 +1,35 @@
+1　herokuでdeployからgithubで接続。これだけだとリポジトリーと繋がっただけでどのディレクトリーを
+deployする指定しないといけないから、vscodeのメインブランチでそれを行う
+→最新のメインでgit subtree push --prefix 「server（デプロイしたいディレクトリの名前）」 heroku main
+2 serverのpackage.jsonに以下を追加
+script:{ "start": "node build/app.js",
+  　     "postinstall": "tsc"}
+3 Procfileは自然にできる？
+2と3は先にやっておくべき？
+
+4 settingのconfig varsから.envファイルの設定をする allow_corsはvercelのURL(一番シンプルなやつ)地球マーク
+
+
+
+1 commit and push all your chnages to main branch.
+2 run: git subtree push --prefix server heroku main
+this pushes server directory to heroku repository
+
+
+add package.json of server
+script:{ "start": "node build/app.js",
+    "postinstall": "tsc"}
+
+
+
+!! don'r set port number when you deploy the app because heroku will handle it.
+
+how reoku works during deployment
+  1 execute postinstall => you need to add postinstall in package.json script
+  in this case, "postinstall": "tsc" will build typescript app.
+  2 "start": "node build/app.js",
+  run app built
+  3 run command in Procfile
+
+
+    
