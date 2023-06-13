@@ -6,3 +6,5 @@ frontend/.env
 server/.DS_Store
 server/.env
 server/build/*
+
+herokudeployment.txt
