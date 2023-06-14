@@ -30,7 +30,7 @@ function List({ news }) {
 
   return (
     <div className="listDiv">
-      <ul>{list}</ul>
+      <ul className="newsContentUl">{list}</ul>
     </div>
   );
 }

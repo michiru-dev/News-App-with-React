@@ -1,3 +1,4 @@
 worker: npm start
 web: cd server && npm start
 # webは毎回serverフォルダを参照する設定
+
