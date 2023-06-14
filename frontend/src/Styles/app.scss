@@ -52,14 +52,21 @@ footer {
   margin-right: 15px;
 }
 
+.newsContentUl {
+  gap: 30px;
+}
+
 .newsContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgba(128, 128, 128, 0.753);
   border-radius: 1rem;
-  margin: 15px 0 15px 0;
-  max-width: 55vw;
+  max-width: 55%;
+  width: 100%;
+  h1 {
+    flex-grow: 1; //動かしたい要素自体につける。flexとセット
+  }
 }
 
 .headerwithCategory {
