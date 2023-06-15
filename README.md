@@ -17,5 +17,9 @@
 - Vercel（フロントエンド）
 - Heroku（バックエンド）
 
-<img width="1265" alt="スクリーンショット 2023-06-13 午前8 54 24" src="https://github.com/michiru-dev/News-App-with-React/assets/105535906/17430177-00af-41b3-8c1d-5de5039fd915">
+![ezgif com-video-to-gif (2)のコピー](https://github.com/michiru-dev/News-App-with-React/assets/105535906/e052b0b3-9a71-4820-a15b-ddf25efc8566)
+
+
+
+
 
