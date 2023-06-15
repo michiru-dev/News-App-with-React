@@ -1,9 +1,11 @@
 import "./Styles/app.scss";
 import "./Styles/category.scss";
+import "./Styles/loadingSpinner.scss";
 import { useState, useEffect } from "react";
 import List from "./CommonComponents/List";
 import CategoryForPc from "./CommonComponents/CategoryForPc";
 import CateogryForPhone from "./CommonComponents/CateogryForPhone";
+import LoadingSpinner from "./CommonComponents/LoadingSpinner";
 
 const categoryArr = [
   "General",
@@ -18,6 +20,7 @@ const categoryArr = [
 function App() {
   const [news, setNews] = useState(null);
   const [category, setCategory] = useState("general");
+  const [isLoading, setIsLoading] = useState(true);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 800);
 
@@ -41,15 +44,17 @@ function App() {
         // fetchをする時は≒GETなのでmethodを省ける
         //その他の場合は、URLの後の第二引数にこんな感じでmethodを記載 {method: "POST"}
       )
-        .then((res) => res.json())
+        .then((res) => res.json()) //jsonは非同期関数だけど上のawaitがここまで効いてる
         .catch((err) => {
           console.log(err);
           throw new Error("Error with news feed fetching");
         });
+
       if (res.status !== "ok") {
         throw new Error("Error with news feed fetching");
       }
       setNews(res);
+      setIsLoading(false);
     };
     fetchNews();
   }, [category]);
@@ -69,6 +74,7 @@ function App() {
 
   return (
     <div>
+      {isLoading && <LoadingSpinner />}
       <div className="headerwithCategory">
         {isSmallScreen ? (
           <CateogryForPhone
